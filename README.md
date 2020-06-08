@@ -11,9 +11,9 @@ $ helm install my-release springboard/typesense -n [namespace]
 
 ## Introduction
 
-This chart bootstraps a [typesense](https://github.com/bitnami/bitnami-docker-typesense) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+This chart bootstraps a [Typesense](https://hub.docker.com/r/typesense/typesense) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
-It deploys a typesense server application and by default will create a persistent volume claim with the default storage class. Optionally, you can set up an Ingress resource to access your application.
+It deploys a Typesense server application and by default will create a persistent volume claim with the default storage class. Optionally, you can set up an Ingress resource to access your application.
 
 This chart is heavily influenced by Bitnami charts best practices.
 
@@ -33,7 +33,7 @@ $ helm repo add springboard https://helm-charts.springboardvr.com
 $ helm install my-release springboard/typesense -n [namespace]
 ```
 
-These commands deploy typesense on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
+These commands deploy Typesense on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm ls -n [namespace]`
 
@@ -49,14 +49,14 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Parameters
 
-The following table lists the configurable parameters of the typesense chart and their default values.
+The following table lists the configurable parameters of the Typesense chart and their default values.
 
 | Parameter                               | Description                                                                 | Default                                                 |
 |-----------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------|
-| `image.registry`                        | typesenseJS image registry                                                  | `docker.io`                                             |
-| `image.repository`                      | typesenseJS image name                                                      | `typesense/typesense`                                   |
-| `image.tag`                             | typesenseJS image tag                                                       | `0.13.0`                                                |
-| `image.pullPolicy`                      | typesenseJS image pull policy                                               | `IfNotPresent`                                          |
+| `image.registry`                        | Typesense image registry                                                  | `docker.io`                                             |
+| `image.repository`                      | Typesense image name                                                      | `typesense/typesense`                                   |
+| `image.tag`                             | Typesense image tag                                                       | `0.13.0`                                                |
+| `image.pullPolicy`                      | Typesense image pull policy                                               | `IfNotPresent`                                          |
 | `image.pullSecrets`                     | Specify docker-registry secret names as an array                            | `[]` (does not add image pull secrets to deployed pods) |
 | `nameOverride`                          | String to partially override typesense.fullname template                    | `nil`                                                   |
 | `fullnameOverride`                      | String to fully override typesense.fullname template                        | `nil`                                                   |
@@ -82,7 +82,7 @@ The following table lists the configurable parameters of the typesense chart and
 | `service.loadBalancerIP`                | LoadBalancer IP if Service type is `LoadBalancer`                           | `nil`                                                   |
 | `service.nodePort`                      | nodePort if Service type is `LoadBalancer` or `nodePort`                    | `nil`                                                   |
 | `ingress.enabled`                       | Enable ingress controller resource                                          | `false`                                                 |
-| `ingress.hosts[0].name`                 | Hostname to your typesense installation                                     | `typesense.local`                                       |
+| `ingress.hosts[0].name`                 | Hostname to your Typesense installation                                     | `typesense.local`                                       |
 | `ingress.hosts[0].path`                 | Path within the url structure                                               | `/`                                                     |
 | `ingress.hosts[0].tls`                  | Utilize TLS backend in ingress                                              | `false`                                                 |
 | `ingress.hosts[0].certManager`          | Add annotations for cert-manager                                            | `false`                                                 |
@@ -124,11 +124,11 @@ extraArgs:
     value: 8080
 ```
 
-A list of the available options can be found on the [typesense website](https://typesense.org/docs/0.13.0/guide/).
+A list of the available options can be found on the [Typesense website](https://typesense.org/docs/0.13.0/guide/).
 
 ### Set up an Ingress controller
 
-First install the nginx-ingress controller and then deploy the typesense helm chart with the following parameters:
+First install the nginx-ingress controller and then deploy the Typesense Helm chart with the following parameters:
 
 ```console
 ingress.enabled=true
