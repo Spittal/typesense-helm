@@ -53,9 +53,6 @@ The following table lists the configurable parameters of the typesense chart and
 
 | Parameter                               | Description                                                                 | Default                                                 |
 |-----------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------|
-| `global.imageRegistry`                  | Global Docker image registry                                                | `nil`                                                   |
-| `global.imagePullSecrets`               | Global Docker registry secret names as an array                             | `[]` (does not add image pull secrets to deployed pods) |
-| `global.storageClass`                   | Global storage class for dynamic provisioning                               | `nil`                                                   |
 | `image.registry`                        | typesenseJS image registry                                                  | `docker.io`                                             |
 | `image.repository`                      | typesenseJS image name                                                      | `typesense/typesense`                                   |
 | `image.tag`                             | typesenseJS image tag                                                       | `0.13.0`                                                |
@@ -63,6 +60,7 @@ The following table lists the configurable parameters of the typesense chart and
 | `image.pullSecrets`                     | Specify docker-registry secret names as an array                            | `[]` (does not add image pull secrets to deployed pods) |
 | `nameOverride`                          | String to partially override typesense.fullname template                    | `nil`                                                   |
 | `fullnameOverride`                      | String to fully override typesense.fullname template                        | `nil`                                                   |
+| `typesense.apiKey`                      | Api key for Typesense (other options can be passed as extraEnv)             | `apikey`                                                |
 | `replicas`                              | Number of replicas for the application                                      | `1`                                                     |
 | `applicationPort`                       | Port where the application will be running                                  | `8108`                                                  |
 | `extraEnv`                              | Any extra environment variables to be pass to the pods                      | `{}`                                                    |
@@ -76,6 +74,7 @@ The following table lists the configurable parameters of the typesense chart and
 | `persistence.enabled`                   | Enable persistence using PVC                                                | `false`                                                 |
 | `persistence.path`                      | Path to persisted directory                                                 | `/app/data`                                             |
 | `persistence.accessMode`                | PVC Access Mode                                                             | `ReadWriteOnce`                                         |
+| `persistence.storageClass`              | Storage class for dynamic provisioning                                      | `nil`                                                   |
 | `persistence.size`                      | PVC Storage Request                                                         | `1Gi`                                                   |
 | `service.type`                          | Kubernetes Service type                                                     | `ClusterIP`                                             |
 | `service.port`                          | Kubernetes Service port                                                     | `80`                                                    |
@@ -114,6 +113,18 @@ $ helm install my-release -f values.yaml springboard/typesense
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
 ## Configuration and installation details
+
+### Typesense settings
+
+You can configure any typesense setting using the `extraArgs` parameter like so.
+
+```yaml
+extraArgs:
+  - name: TYPESENSE_API_PORT
+    value: 8080
+```
+
+A list of the available options can be found on the [typesense website](https://typesense.org/docs/0.13.0/guide/).
 
 ### Set up an Ingress controller
 

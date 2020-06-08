@@ -33,15 +33,12 @@ spec:
           env:
             - name: TYPESENSE_DATA_DIR
               value: {{ .Values.persistence.path }}
+            - name: TYPESENSE_API_KEY
+              value: {{ .Values.typesense.apiKey }}
             {{- if .Values.extraEnv }}
             {{- toYaml .Values.extraEnv | nindent 12 }}
             {{- end }}
           workingDir: /opt
-          command:
-            - /bin/bash
-            - -ec
-            - |
-              typesense-server
           ports:
             - name: http
               containerPort: {{ .Values.applicationPort }}
@@ -69,7 +66,7 @@ spec:
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ template "typesense.fullname" . }}
+            claimName: {{ template "typesense.fullname" . }}-binding
           {{- else }}
           emptyDir: {}
           {{- end }}

@@ -1,13 +1,3 @@
-## Global Docker image parameters
-## Please, note that this will override the image parameters, including dependencies, configured to use the global value
-## Current available global Docker image parameters: imageRegistry and imagePullSecrets
-##
-# global:
-#   imageRegistry: myRegistryName
-#   imagePullSecrets:
-#     - myRegistryKeySecretName
-#   storageClass: myStorageClass
-
 ## typesense image version
 ## ref: https://hub.docker.com/r/typesense/typesense/
 ##
@@ -34,6 +24,11 @@ image:
 ## String to fully override typesense.fullname template
 ##
 # fullnameOverride:
+
+## Typesense settings
+## ref: https://typesense.org/docs/0.13.0/guide/ server arguments
+typesense:
+  apiKey: apikey
 
 ## Specify the number of replicas for the application
 ##
