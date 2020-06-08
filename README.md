@@ -5,8 +5,8 @@
 ## TL;DR;
 
 ```console
-$ helm repo add bitnami https://helm-charts.springboardvr.com
-$ helm install my-release bitnami/typesense -n [namespace]
+$ helm repo add springboard https://helm-charts.springboardvr.com
+$ helm install my-release springboard/typesense -n [namespace]
 ```
 
 ## Introduction
@@ -29,8 +29,8 @@ This chart is heavily influenced by Bitnami charts best practices.
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm repo add bitnami https://helm-charts.springboardvr.com
-$ helm install my-release bitnami/typesense -n [namespace]
+$ helm repo add springboard https://helm-charts.springboardvr.com
+$ helm install my-release springboard/typesense -n [namespace]
 ```
 
 These commands deploy typesense on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
@@ -100,7 +100,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 $ helm install my-release \
   --set repository=https://github.com/jbianquetti-nami/simple-typesense-app.git,replicas=2 \
-    bitnami/typesense
+    springboard/typesense
 ```
 
 The above command clones the remote git repository to the `/app/` directory  of the container. Additionally it sets the number of `replicas` to `2`.
@@ -108,7 +108,7 @@ The above command clones the remote git repository to the `/app/` directory  of 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install my-release -f values.yaml bitnami/typesense
+$ helm install my-release -f values.yaml springboard/typesense
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
