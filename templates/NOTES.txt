@@ -1,6 +1,3 @@
-
-1. Get the URL of your typesense app by running:
-
 {{- if contains "nodePort" .Values.service.type }}
 
   export typesense_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "typesense.fullname" . }})
@@ -17,7 +14,9 @@
 
 {{- else if contains "ClusterIP"  .Values.service.type }}
 
-  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "typesense.fullname" . }} {{ .Values.service.port  }}:{{ .Values.service.port }}
-  echo "typesense app URL: http://127.0.0.1:{{ .Values.service.port }}/"
+  To visit typesense locally:
+  kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "typesense.fullname" . }} 8080:{{ .Values.service.port }}
+
+  It will now be available at localhost:8080
 
 {{- end }}
