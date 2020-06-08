@@ -1,6 +1,6 @@
 # Typesense Helm Chart
 
-[typesense](https://typesense.org/) Typesense is an open source, typo tolerant search engine that delivers fast and relevant results out-of-the-box.
+[Typesense](https://typesense.org/) is an open source, typo tolerant search engine that delivers fast and relevant results out-of-the-box.
 
 ## TL;DR;
 
