@@ -25,11 +25,6 @@ image:
 ##
 # fullnameOverride:
 
-## Typesense settings
-## ref: https://typesense.org/docs/0.13.0/guide/ server arguments
-typesense:
-  apiKey: apikey
-
 ## Specify the number of replicas for the application
 ##
 replicas: 1
@@ -41,6 +36,10 @@ applicationPort: 8108
 ## Define custom environment variables to pass to the image here
 ##
 extraEnv: {}
+
+## Define a reference to a config map or a secret to pass into the pod as environment vars
+## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
+envFrom: {}
 
 ## Affinity for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-typesense/#affinity-and-anti-affinity

@@ -30,11 +30,12 @@ spec:
         - name: typesense
           image: {{ template "typesense.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          {{- if .Values.envFrom }}
+          envFrom: {{- toYaml .Values.envFrom | nindent 12 }}
+          {{- end }}
           env:
             - name: TYPESENSE_DATA_DIR
               value: {{ .Values.persistence.path }}
-            - name: TYPESENSE_API_KEY
-              value: {{ .Values.typesense.apiKey }}
             {{- if .Values.extraEnv }}
             {{- toYaml .Values.extraEnv | nindent 12 }}
             {{- end }}

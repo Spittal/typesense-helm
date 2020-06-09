@@ -53,17 +53,17 @@ The following table lists the configurable parameters of the Typesense chart and
 
 | Parameter                               | Description                                                                 | Default                                                 |
 |-----------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------|
-| `image.registry`                        | Typesense image registry                                                  | `docker.io`                                             |
-| `image.repository`                      | Typesense image name                                                      | `typesense/typesense`                                   |
-| `image.tag`                             | Typesense image tag                                                       | `0.13.0`                                                |
-| `image.pullPolicy`                      | Typesense image pull policy                                               | `IfNotPresent`                                          |
+| `image.registry`                        | Typesense image registry                                                    | `docker.io`                                             |
+| `image.repository`                      | Typesense image name                                                        | `typesense/typesense`                                   |
+| `image.tag`                             | Typesense image tag                                                         | `0.13.0`                                                |
+| `image.pullPolicy`                      | Typesense image pull policy                                                 | `IfNotPresent`                                          |
 | `image.pullSecrets`                     | Specify docker-registry secret names as an array                            | `[]` (does not add image pull secrets to deployed pods) |
 | `nameOverride`                          | String to partially override typesense.fullname template                    | `nil`                                                   |
 | `fullnameOverride`                      | String to fully override typesense.fullname template                        | `nil`                                                   |
-| `typesense.apiKey`                      | Api key for Typesense (other options can be passed as extraEnv)             | `apikey`                                                |
 | `replicas`                              | Number of replicas for the application                                      | `1`                                                     |
 | `applicationPort`                       | Port where the application will be running                                  | `8108`                                                  |
 | `extraEnv`                              | Any extra environment variables to be pass to the pods                      | `{}`                                                    |
+| `envFrom`                               | An envFrom for the deployment, for adding a secret as ENV vars              | `{}`                                                    |
 | `affinity`                              | Map of node/pod affinities                                                  | `{}` (The value is evaluated as a template)             |
 | `nodeSelector`                          | node labels for pod assignment                                              | `{}` (The value is evaluated as a template)             |
 | `tolerations`                           | Tolerations for pod assignment                                              | `[]` (The value is evaluated as a template)             |
@@ -116,7 +116,15 @@ $ helm install my-release -f values.yaml springboard/typesense
 
 ### Typesense settings
 
-You can configure any typesense setting using the `extraArgs` parameter like so.
+You can configure any typesense setting using the `envFrom` parameter like so. (Learn about envFrom)[https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container]
+
+```yaml
+envFrom:
+  - configMapRef:
+      name: name-of-config-map-with-env-vars
+```
+
+Or you can do individual settings like.
 
 ```yaml
 extraArgs:
