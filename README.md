@@ -116,7 +116,7 @@ $ helm install my-release -f values.yaml springboard/typesense
 
 ### Typesense settings
 
-You can configure any typesense setting using the `envFrom` parameter like so. (Learn about envFrom)[https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container]
+You can configure any typesense setting using the `envFrom` parameter like so. [Learn about envFrom](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container)
 
 ```yaml
 envFrom:
