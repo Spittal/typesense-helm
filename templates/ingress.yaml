@@ -18,9 +18,12 @@ spec:
       http:
         paths:
           - path: {{ default "/" .path }}
+            pathType: {{ .pathType }}
             backend:
-              serviceName: {{ template "typesense.fullname" $ }}
-              servicePort: 80
+              service:
+                name: {{ template "typesense.fullname" $ }}
+                port:
+                  number: 80
   {{- if .tls }}
   tls:
     - hosts:
