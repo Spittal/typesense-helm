@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled }}
 {{- range .Values.ingress.hosts }}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "typesense.fullname" $ }}
@@ -18,9 +18,12 @@ spec:
       http:
         paths:
           - path: {{ default "/" .path }}
+            pathType: {{ .pathType }}
             backend:
-              serviceName: {{ template "typesense.fullname" $ }}
-              servicePort: 80
+              service:
+                name: {{ template "typesense.fullname" $ }}
+                port:
+                  number: 80
   {{- if .tls }}
   tls:
     - hosts:
