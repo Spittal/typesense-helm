@@ -64,6 +64,24 @@ securityContext:
   fsGroup: 1001
   runAsUser: 1001
 
+## Container Liveness and Readiness Probes
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+##
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 60
+  timeoutSeconds: 5
+  failureThreshold: 6
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 10
+  timeoutSeconds: 3
+  periodSeconds: 5
+
 ## typesense conatiners' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
